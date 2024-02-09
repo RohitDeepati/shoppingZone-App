@@ -75,7 +75,7 @@ export const CheckoutForm = () => {
     navigate("/orderplaced");
   };
   return (
-    <div className="">
+    <div className="bg-gray-200 mb-10">
       <div className="bg-[#002333] text-white py-2 px-4 h-24 md:px-8 flex justify-between items-center sticky top-0 z-50">
         <Link to="/home">
           <h1 className="text-2xl md:text-3xl font-bold ">Shopping Zone</h1>
@@ -89,7 +89,7 @@ export const CheckoutForm = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-200 p-10 rounded-lg max-w-md mx-auto"
+        className="bg-white  p-10 rounded-lg max-w-md mx-auto"
       >
         <div className="relative z-0 w-full mb-5 group">
           <input

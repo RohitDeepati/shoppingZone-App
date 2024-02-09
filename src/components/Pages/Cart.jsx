@@ -29,7 +29,7 @@ export const Cart = () => {
           <h1 className="text-2xl md:text-3xl font-bold ">Shopping Zone</h1>
         </Link>
       </div>
-      <div className="items-center sm:p-2 lg:py-24 bg-white font-poppins h-full ">
+      <div className="items-center sm:p-2 lg:py-24 bg-gray-200 font-poppins h-full ">
         <div className="justify-center flex-1 max-w-6xl px-4 py-6 mx-auto lg:py-4 md:px-6">
           <h2 className="mb-10 text-4xl font-bold text-center text-black ">
             Your Cart
@@ -48,14 +48,14 @@ export const Cart = () => {
                   Your shopping cart is empty.
                 </p>
                 <Link to="/home">
-                  <button className="px-6 py-2 bg-gray-400 text-white rounded-md shadow-md hover:opacity-70 transition-colors duration-300">
+                  <button className="px-6 py-2 bg-gray-400 text-white rounded-lg  hover:opacity-70 transition-colors duration-300">
                     Browse Products
                   </button>
                 </Link>
               </div>
             )}
             {items.length > 0 && (
-              <ul id="cart-items" className="bg-gray-200 p-10 rounded-lg ">
+              <ul id="cart-items" className="bg-white p-10 rounded-lg ">
                 {items.map((item) => {
                   const formattedPrice = `${(
                     item.price * item.quantity
@@ -86,7 +86,7 @@ export const Cart = () => {
                               >
                                 -
                               </button>
-                              <span className="w-12 px-2 py-4 text-center  rounded-md text-[#3B3936]  bg-gray-200">
+                              <span className="w-12 px-2 py-4 text-center  rounded-md text-[#3B3936]  ">
                                 {item.quantity}
                               </span>
                               <button
@@ -100,7 +100,7 @@ export const Cart = () => {
                         </div>
 
                         {/*  */}
-                        <div className="w-full px-4 mb-6 xl:w-auto xl:mb-0 xl:mt-0">
+                        <div className="w-full px-3 mb-6 xl:w-auto xl:mb-0 xl:mt-0">
                           <button
                             onClick={() => handleRemove(item.id, item.name)}
                             className="inline-block px-8 py-4 font-bold text-white uppercase bg-red-600 rounded-md hover:bg-red-500"
@@ -108,7 +108,7 @@ export const Cart = () => {
                             Remove
                           </button>
                         </div>
-                        <div className="w-full px-4 xl:w-auto">
+                        <div className="w-full px-3 xl:w-auto">
                           <span className="text-medium font-medium text-black">
                             <span className="text-sm">$</span>
                             <span>
