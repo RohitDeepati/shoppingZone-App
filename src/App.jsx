@@ -1,4 +1,3 @@
-// App.jsx
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ProductBody } from "./components/UI/ProductsBody";
@@ -8,6 +7,7 @@ import { ThankyouShopping } from "./components/Pages/Thankyou-shopping";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CheckoutForm } from "./components/Pages/CheckoutForm";
 
 function App() {
   return (
@@ -17,7 +17,8 @@ function App() {
           <Route path="/" element={<ProductBody />} />
           <Route path="/home" element={<ProductBody />} />
           <Route path="/your-cart" element={<Cart />} />
-          <Route path="/thankyou-shopping" element={<ThankyouShopping />} />
+          <Route path="/checkout" element={<CheckoutForm />} />
+          <Route path="/orderplaced" element={<ThankyouShopping />} />
         </Routes>
         <ToastContainer />
       </Router>

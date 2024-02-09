@@ -1,9 +1,6 @@
 import { createContext, useState } from "react";
 import { products } from "../Products-data/products";
 
-
-
-
 export const ShopppingContext = createContext({
   items: [],
   addItemToCart: () => {},
@@ -42,7 +39,7 @@ export const ShopppingContextProvider = ({ children }) => {
           img: product.image,
         });
       }
-      
+
       return {
         items: updateItems,
       };
@@ -72,6 +69,12 @@ export const ShopppingContextProvider = ({ children }) => {
     });
   };
 
+  const handleCheck = () => {
+    setShoppingCart({
+      items:[]
+    });
+  };
+
   const handleRemoveItem = (id) => {
     setShoppingCart((prevShoppingCart) => {
       const updatedItems = prevShoppingCart.items.filter(
@@ -88,6 +91,7 @@ export const ShopppingContextProvider = ({ children }) => {
     addItemToCart: handleAddItemToCart,
     updateItemQuantity: handleUpdateCartItemQuantity,
     removeItem: handleRemoveItem,
+    checkoutBtn: handleCheck,
   };
   return (
     <ShopppingContext.Provider value={ctxValue}>

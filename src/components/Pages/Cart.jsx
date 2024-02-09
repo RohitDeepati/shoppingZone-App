@@ -5,7 +5,7 @@ import { ShopppingContext } from "../store/ShoppingContext";
 import { toast } from "react-toastify";
 
 export const Cart = () => {
-  const { items, updateItemQuantity, removeItem } =
+  const { items, updateItemQuantity, removeItem, checkoutBtn } =
     useContext(ShopppingContext);
 
   const totalPrice = items.reduce(
@@ -20,12 +20,6 @@ export const Cart = () => {
     });
   };
 
-  const handleCheckoutButton = () => {
-    toast.success(`Order placed successfully✅`, {
-      autoClose: 1000,
-    });
-  };
-
   const formatedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
   return (
@@ -35,7 +29,7 @@ export const Cart = () => {
           <h1 className="text-2xl md:text-3xl font-bold ">Shopping Zone</h1>
         </Link>
       </div>
-      <div className="items-center sm:p-2 lg:py-24 bg-[#486966] font-poppins h-full ">
+      <div className="items-center sm:p-2 lg:py-24 bg-white font-poppins h-full ">
         <div className="justify-center flex-1 max-w-6xl px-4 py-6 mx-auto lg:py-4 md:px-6">
           <h2 className="mb-10 text-4xl font-bold text-center text-black ">
             Your Cart
@@ -54,14 +48,14 @@ export const Cart = () => {
                   Your shopping cart is empty.
                 </p>
                 <Link to="/home">
-                  <button className="px-6 py-2 bg-[#889C9B] text-white rounded-md shadow-md hover:opacity-70 transition-colors duration-300">
+                  <button className="px-6 py-2 bg-gray-400 text-white rounded-md shadow-md hover:opacity-70 transition-colors duration-300">
                     Browse Products
                   </button>
                 </Link>
               </div>
             )}
             {items.length > 0 && (
-              <ul id="cart-items" className="bg-[#B2BEBF] p-10 rounded-lg ">
+              <ul id="cart-items" className="bg-gray-200 p-10 rounded-lg ">
                 {items.map((item) => {
                   const formattedPrice = `${(
                     item.price * item.quantity
@@ -70,11 +64,11 @@ export const Cart = () => {
                   return (
                     <div className="mb-10 " key={item.id}>
                       <div className="relative flex flex-wrap items-center pb-8 mb-8 -mx-4 border-b border-[#889C9B] xl:justify-between border-opacity-40">
-                        <div className="lg:w-full sm:w-1/2 mb-4 md:mb-0 h-96 md:h-44 md:w-56">
+                        <div className="w-full sm:w-1/2 mb-4 md:mb-0 h-96 md:h-44 md:w-56">
                           <img
                             src={item.img}
                             alt=""
-                            className="lg:object-contain lg:w-full lg:h-full sm:w-[20px]"
+                            className="object-contain w-full h-full "
                           />
                         </div>
                         <div className="w-full px-4 mb-6 md:w-96 xl:mb-0">
@@ -85,19 +79,19 @@ export const Cart = () => {
                         <div className="w-full px-4 mt-6 mb-6 xl:w-auto xl:mb-0 xl:mt-0">
                           <div className="flex items-center">
                             <h2 className="mr-4 font-medium">Qty:</h2>
-                            <div className="inline-flex items-center px-4 font-semibold text-gray-500 border border-[#889C9B] rounded-md ">
+                            <div className="inline-flex items-center px-4 font-semibold text-gray-500 border border-gray-400 rounded-md ">
                               <button
                                 onClick={() => updateItemQuantity(item.id, -1)}
-                                className="py-2 pr-2 border-r border-[#889C9B]  hover:text-gray-700"
+                                className="py-2 pr-2 border-r border-gray-500  "
                               >
                                 -
                               </button>
-                              <span className="w-12 px-2 py-4 text-center  rounded-md text-[#3B3936]  bg-[#889C9B]">
+                              <span className="w-12 px-2 py-4 text-center  rounded-md text-[#3B3936]  bg-gray-200">
                                 {item.quantity}
                               </span>
                               <button
                                 onClick={() => updateItemQuantity(item.id, 1)}
-                                className="py-2 pl-2 border-l border-[#889C9B]  hover:text-gray-700 "
+                                className="py-2 pl-2 border-l border-gray-500 text-black"
                               >
                                 +
                               </button>
@@ -109,13 +103,13 @@ export const Cart = () => {
                         <div className="w-full px-4 mb-6 xl:w-auto xl:mb-0 xl:mt-0">
                           <button
                             onClick={() => handleRemove(item.id, item.name)}
-                            className="inline-block px-8 py-4 font-bold text-white uppercase bg-[#486966] rounded-md hover:bg-red-500"
+                            className="inline-block px-8 py-4 font-bold text-white uppercase bg-red-600 rounded-md hover:bg-red-500"
                           >
                             Remove
                           </button>
                         </div>
                         <div className="w-full px-4 xl:w-auto">
-                          <span className="text-medium font-medium text-[#486966]">
+                          <span className="text-medium font-medium text-black">
                             <span className="text-sm">$</span>
                             <span>
                               <strong>{formattedPrice}</strong>
@@ -127,7 +121,7 @@ export const Cart = () => {
                   );
                 })}
                 <div className="mb-10">
-                  <div className="px-10 py-3 bg-[#889C9B] rounded-md">
+                  <div className="px-10 py-3 bg-gray-300 rounded-md">
                     <div className="flex justify-between ">
                       <span className="font-medium">Subtotal</span>
                       <span className="font-bold ">{formatedTotalPrice}</span>
@@ -151,15 +145,12 @@ export const Cart = () => {
                   </div>
                   <div className="text-right">
                     <Link to="/home">
-                      <button className="inline-block w-full px-8 py-4 mb-4 mr-6 font-bold text-center uppercase transition duration-200 bg-[#889C9B]  rounded-md     md:mb-0 md:w-auto hover:bg-gray-200 ">
+                      <button className="inline-block w-full px-8 py-4 mb-4 mr-6 font-bold text-center uppercase transition duration-200 bg-white  rounded-md     md:mb-0 md:w-auto hover:bg-gray-300 ">
                         Browse More Products
                       </button>
                     </Link>
-                    <Link to="/thankyou-shopping">
-                      <button
-                        onClick={handleCheckoutButton}
-                        className="inline-block w-full px-8 py-4 font-bold text-center text-white uppercase transition duration-200 bg-amber-500 rounded-md md:w-auto hover:bg-amber-600 "
-                      >
+                    <Link to="/checkout">
+                      <button className="inline-block w-full px-8 py-4 font-bold text-center text-white uppercase transition duration-200 bg-amber-500 rounded-md md:w-auto hover:bg-amber-600 ">
                         Go to Checkout
                       </button>
                     </Link>
